@@ -12,7 +12,7 @@ require(['jquery'], function($) {
     audio.autobuffer = true;
     document.body.appendChild(audio);
     audio.load();
-    $('#audio-row').on('click', 'a', playAudio)
+    $('.grid').on('click', 'a', playAudio)
 
     function playAudio(event) {
         event.preventDefault();
