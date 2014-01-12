@@ -11,7 +11,7 @@
 	background-color: #ff7a85;
 }
 a {
-	font: bold 40px 'Arial';
+	font: bold 38px 'Arial';
     text-decoration: none;
     white-space: nowrap;
     background-color: #FFF;
@@ -40,9 +40,22 @@ a:hover {
   float: left;
   width: 24%;
   margin: 5px;
-  padding: 10% 0%;
+  padding: 9% 0%;
   text-align: center;
+  min-width: 150px;
+  min-height: 150px;
 }
+@media all and (max-width: 950px) {
+  a {
+  	font-size: 30px;
+  }
+}
+@media all and (max-width: 800px) {
+  a {
+  	font-size: 20px;
+  }
+}
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
