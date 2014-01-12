@@ -1,18 +1,20 @@
 require.config({
     baseUrl: "/lib/",
     paths: {
-         jquery: 'jquery-2.0.3.min'
+        jquery: 'jquery-2.0.3.min',
+        data: '../js/data',
+        lodash: 'lodash.min'
     }
 });
 
-require(['jquery'], function($) {
-
+require(['jquery', 'data', 'lodash'], function($, data, _) {
     var audio = document.createElement('audio');
     audio.setAttribute('preload', 'auto');
     audio.autobuffer = true;
     document.body.appendChild(audio);
     audio.load();
-    $('.grid').on('click', 'a', playAudio)
+    data.getBoardData(playAudio);
+    //$('.grid').on('click', 'a', )
 
     function playAudio(event) {
         event.preventDefault();
