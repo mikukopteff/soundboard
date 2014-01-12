@@ -1,5 +1,7 @@
+@normal-font: normal 38px 'The Girl Next Door', cursive;
+
 .heading {
-	font: normal 38px 'The Girl Next Door', cursive;
+	font: @normal-font;
 	text-align: center;
 	.epic {
 		font-weight: bold;
@@ -28,7 +30,7 @@ h1:after {
 	background-color: #ff7a85;
 }
 a {
-	font: normal 38px 'The Girl Next Door', cursive;
+	font: @normal-font;
     text-decoration: none;
     white-space: nowrap;
     background-color: #FFF;
@@ -41,7 +43,7 @@ a {
 	transition: all .2s ease;
 }
 a:active {
-	background-color: rgba(0,0,0, 0.5);
+	background-color: rgba(0,0,0, 0.2);
 	padding: 15px 15px 15px 15px;
 }
 .cell:hover {
