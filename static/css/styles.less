@@ -1,0 +1,88 @@
+@normal-font: normal 38px 'The Girl Next Door', cursive;
+
+.heading {
+	font: @normal-font;
+	text-align: center;
+	.epic {
+		font-weight: bold;
+		font-size: 40px;
+	}
+}
+h1:after {
+	content: '';
+	display: block;
+	width: 220px;
+	height: 3px;
+	background-color: #191919;
+	margin: 15px auto 0;
+}
+
+.blue {
+	background-color: #5bb2fc;
+}
+.green {
+	background-color: #58ebd3;
+}
+.orange {
+	background-color: #ffa659;
+}
+.red {
+	background-color: #ff7a85;
+}
+a {
+	font: @normal-font;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: #FFF;
+    color: #333333;
+    padding: 10px 10px 10px 10px;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-ms-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+}
+a:active {
+	background-color: rgba(0,0,0, 0.2);
+	padding: 15px 15px 15px 15px;
+}
+.cell:hover {
+	opacity: 0.7;
+}
+
+.items:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#cell {
+	display:none;
+}
+
+.cell {
+  float: left;
+  width: 24%;
+  margin: .3%;
+  padding: 9% 0%;
+  text-align: center;
+  min-width: 150px;
+  min-height: 150px;
+}
+@media all and (max-width: 950px) {
+  a {
+  	font-size: 30px;
+  }
+}
+@media all and (max-width: 800px) {
+  a {
+  	font-size: 20px;
+  }
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
