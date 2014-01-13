@@ -1,6 +1,6 @@
 define([], function() {
 	var order = ['blue', 'green', 'orange', 'red', 'orange', 'red', 'green'];
-	var classOrder = order.concat(['blue']).concat(order.reverse()); 
+	var classOrder = order.concat(['blue', 'green']).concat(order.reverse());
 
   	return {
   		getBoardData: function (callback) {
