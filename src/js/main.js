@@ -14,7 +14,6 @@ require(['jquery', 'data', 'lodash'], function($, data, _) {
     document.body.appendChild(audio);
     audio.load();
     data.getBoardData(playAudio);
-    //$('.grid').on('click', 'a', )
 
     function playAudio(event) {
         event.preventDefault();
