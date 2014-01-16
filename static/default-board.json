@@ -1,22 +1,22 @@
 {
 	"boardId": "1",
 	"author": "miku",
-	"boardCells": [{"text": "Varmaa!", "audioUrl": "http://localhost:8000/test.wav"},
-		{"text": "Läppä Läppä!", "audioUrl": "http://localhost:8000/test.wav"},
+	"boardCells": [{"text": "Varmaa!", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/varmaa3.wav"},
+		{"text": "Läppä Läppä!", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/lappalappa2.wav"},
 		{"text": "Asia kunnossa!", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/asia.wav"},
-		{"text": "Boom!", "audioUrl": "http://localhost:8000/test.wav"},
-		{"text": "Hiiri!", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/hiiri.wav"},
+		{"text": "Boom!", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/Boom.wav"},
+		{"text": "Hiiri!", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/hiiri2.wav"},
 		{"text": "No Huomenta", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/huomenta.wav"},
 		{"text": "Balaillaan", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/balabala.wav"},
-		{"text": "Coulis", "audioUrl": "http://localhost:8000/test.wav"},
-		{"text": "Ei rapaloita", "audioUrl": "http://localhost:8000/test.wav"},
-		{"text": "Mmmmhustelu", "audioUrl": "http://localhost:8000/test.wav"},
+		{"text": "Coulis", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/coulis.wav"},
+		{"text": "POW!", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/pow.wav"},
+		{"text": "Mmmmmaiscuti", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/maiscuti.wav"},
 		{"text": "Cuicca", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/kuikka.wav"},
 		{"text": "Pasa!", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/pasa.wav"},
 		{"text": "Meisseli", "audioUrl": "http://localhost:8000/test.wav"},
-		{"text": "Meurocard", "audioUrl": "http://localhost:8000/test.wav"},
+		{"text": "Mmmmehustelu", "audioUrl": "http://localhost:8000/test.wav"},
 		{"text": "Tuttua?", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/kelloja.wav"},
-		{"text": "Perin erikoista", "audioUrl": "http://localhost:8000/test.wav"}
+		{"text": "Perin erikoista", "audioUrl": "https://s3-eu-west-1.amazonaws.com/epic-board/perin.wav"}
 
 	]
 

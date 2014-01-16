@@ -3,11 +3,12 @@ require.config({
     paths: {
         jquery: 'jquery-2.0.3.min',
         data: '../js/data',
-        lodash: 'lodash.min'
+        lodash: 'lodash.min',
+        less: 'less-1.6.0.min'
     }
 });
 
-require(['jquery', 'data', 'lodash'], function($, data, _) {
+require(['jquery', 'data', 'lodash', 'less'], function($, data, _) {
     var audio = document.createElement('audio');
     audio.setAttribute('preload', 'auto');
     audio.autobuffer = true;
