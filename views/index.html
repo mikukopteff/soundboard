@@ -3,7 +3,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta property="og:<%= tagTitle %>" content="<%= tagName %>"/>
+  <meta property="og:title" content="<%=title%>"/>
+  <meta property="og:url" content="<%=url%>"/>
+  <meta property="og:image" content="https://s3-eu-west-1.amazonaws.com/epic-board/epic-board.jpg"/>
+  <meta property="og:site" content="The most Epic of Soundboards"/>
+  <meta property="og:description" content="<%description%>"/>
+  <meta property="og:type" content="website"/>
+  
+
   <title>The most epic of soundboards</title>
   <meta name="description" content="Awesome soundboard">
   <meta name="author" content="Soundboard">
@@ -14,8 +21,17 @@
 </head>
 
 <body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=736748319669744";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
   <script src="/lib/modernizr-latest.js"></script>
 
+  <div class="fb-share-button" data-href="<%=url%>" data-type="button_count"></div>
   <h1 class="heading">The most <em class="epic">Epic</em> of Soundboards</h1>
   <div class="board">
   </div>
@@ -24,4 +40,4 @@
   <div id= "cell" class="cell"><a href="#">Button text</a></div>
   <!-- End template -->
 </body>
-</html>
+</html
