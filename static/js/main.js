@@ -3,18 +3,21 @@ require.config({
     paths: {
         jquery: 'jquery-2.0.3.min',
         data: '../js/data',
+        sharing: '../js/sharing',
         lodash: 'lodash.min',
         less: 'less-1.6.0.min'
     }
 });
 
-require(['jquery', 'data', 'lodash', 'less'], function($, data, _) {
+require(['jquery', 'sharing', 'data', 'lodash', 'less'], function($, sharing, data, _) {
     var audio = document.createElement('audio');
     audio.setAttribute('preload', 'auto');
     audio.autobuffer = true;
     document.body.appendChild(audio);
     audio.load();
-    data.getBoardData(playAudio);
+    data.boardConstructor(playAudio, function() {
+        sharing.shareButton();
+    });
 
     function playAudio(event) {
         event.preventDefault();
