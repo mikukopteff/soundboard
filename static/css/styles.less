@@ -61,6 +61,7 @@ a:active {
 }
 
 .cell {
+  position:relative;
   float: left;
   width: 24%;
   margin: .3%;
@@ -71,7 +72,12 @@ a:active {
 }
 
 .share {
-	display: block;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 @media all and (max-width: 950px) {
