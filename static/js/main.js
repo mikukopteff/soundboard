@@ -16,7 +16,7 @@ require(['jquery', 'sharing', 'data', 'lodash', 'less'], function($, sharing, da
     document.body.appendChild(audio);
     audio.load();
     data.boardConstructor(playAudio, function() {
-        sharing.shareButton();
+        _.each($('.share'), sharing.shareButton);
     });
 
     function playAudio(event) {
