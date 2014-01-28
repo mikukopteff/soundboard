@@ -19,7 +19,7 @@ app.set('views', __dirname + '/views')
 console.log('Server started')
 app.listen(process.env.PORT || 8000)
 
-app.get('/app', function(req, res){
+app.get('/app/:board/:sound', function(req, res){
 	res.render('index', {title : 'The most Epic of Soundboards', 
 		url: req.protocol + "://" + req.get('host') + req.url,
 		description: 'Awesome Soundboard app'})
