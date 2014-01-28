@@ -8,9 +8,9 @@ define([], function() {
             	FB.ui({
                   app_id: '736748319669744',
                 	method: 'feed',
-                  source: board.boardCells[id].audioUrl,
+                  //source: board.boardCells[id].audioUrl,
                 	name: 'Epic Board sound: ' + board.boardCells[id].text,
-                	link: window.location.href,
+                	link: window.location.href.substr(0, window.location.href.lastIndexOf('/') + 1) + id,
                 	picture: "https://s3-eu-west-1.amazonaws.com/epic-board/epic-board.jpg",
                 	caption: window.location.href,
                 	description: 'Listen to a sound on Epic Soundboard',
