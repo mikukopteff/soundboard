@@ -49,13 +49,6 @@ a.buttontext:active {
 .cell:hover {
 	opacity: 0.7;
 }
-
-.items:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 #cell {
 	display:none;
 }
@@ -95,5 +88,39 @@ a.buttontext:active {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.sound-selected {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 5;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 1.5s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: 5;
+
+    animation-name: blinker;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 5;
+}
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1.0; }
 }
 

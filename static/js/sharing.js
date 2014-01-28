@@ -4,7 +4,7 @@ define([], function() {
   		shareButton: function (element, board) {
       var id =  $(element).parent().parent().attr('id')
 			$(element).click(function(e){
-            	e.preventDefault(); 
+            	e.preventDefault() 
             	FB.ui({
                   app_id: '736748319669744',
                 	method: 'feed',
@@ -17,6 +17,11 @@ define([], function() {
                 	message: ''
             	});     
         	});
-  		}
+  		},
+      highlightSelected: function (soundId){
+        var selected = $('#' + (parseInt(soundId) - 1))
+        selected.addClass('sound-selected')
+        $('html, body').animate({ scrollTop: selected.offset().top }, 'slow')
+      }
   	}
 });

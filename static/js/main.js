@@ -19,6 +19,7 @@ require(['jquery', 'sharing', 'data', 'lodash', 'less'], function($, sharing, da
     data.boardConstructor(playAudio, function(json) {
         board = json
         _.each($('.cell .share'), function(element) { sharing.shareButton(element, board) });
+        sharing.highlightSelected(_.last(window.location.pathname.split('/')))
     });
 
     function playAudio(event) {
