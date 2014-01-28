@@ -7,15 +7,16 @@ define([], function() {
 				console.log(json);
 				for (var i = 0; i < json.boardCells.length; i++) {
 					var newCell = $("#cell").clone();
-					newCell.removeAttr('id');
+					newCell.attr('id', i);
+					newCell.addClass('cell')
 					var y = classOrder.length > i ? i : i - classOrder.length;
-					newCell.addClass(classOrder[y]) 
+					newCell.addClass(classOrder[y])
 					newCell.children('a.buttontext').text(json.boardCells[i].text)
 						.attr('href','#').attr('data-audio-url', json.boardCells[i].audioUrl)
 						.click(buttonClicked);
 					newCell.appendTo(".board").show();
-					boardCreated();
 				}
+				boardCreated(json);
 			});  			
   		}
   	}

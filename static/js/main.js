@@ -10,13 +10,15 @@ require.config({
 });
 
 require(['jquery', 'sharing', 'data', 'lodash', 'less'], function($, sharing, data, _) {
+    var board = {}
     var audio = document.createElement('audio');
     audio.setAttribute('preload', 'auto');
     audio.autobuffer = true;
     document.body.appendChild(audio);
     audio.load();
-    data.boardConstructor(playAudio, function() {
-        _.each($('.share'), sharing.shareButton);
+    data.boardConstructor(playAudio, function(json) {
+        board = json
+        _.each($('.cell .share'), function(element) { sharing.shareButton(element, board) });
     });
 
     function playAudio(event) {
