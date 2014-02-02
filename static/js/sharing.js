@@ -19,9 +19,11 @@ define([], function() {
         	});
   		},
       highlightSelected: function (soundId){
-        var selected = $('#' + (parseInt(soundId)))
-        selected.addClass('sound-selected')
-        $('html, body').animate({ scrollTop: selected.offset().top }, 'slow')
+        if (soundId != '') {
+          var selected = $('#' + (parseInt(soundId)))
+          selected.addClass('sound-selected')
+          $('html, body').animate({ scrollTop: selected.offset().top }, 'slow')
+        }
       }
   	}
 });
