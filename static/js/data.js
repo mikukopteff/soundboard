@@ -3,7 +3,7 @@ define([], function() {
 
   	return {
   		boardConstructor: function (buttonClicked, boardCreated) {
-			$.ajax('/default-board.json').done(function(json) {				
+			$.ajax('/static/default-board.json').done(function(json) {				
 				console.log(json);
 				for (var i = 0; i < json.boardCells.length; i++) {
 					var newCell = $("#cell").clone();

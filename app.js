@@ -5,7 +5,8 @@ cons = require('consolidate')
 var app = express()
 app.use(express.compress())
 
-app.use('/', express.static(__dirname + '/static'))
+app.use('/static', express.static(__dirname + '/static'))
+/* Test deps, these should be refactored into a seperate node entrypoint */
 app.use('/test', express.static(__dirname + '/test'))
 app.use('/test/lib/mocha', express.static(__dirname + '/node_modules/mocha'))
 app.use('/test/lib/chai', express.static(__dirname + '/node_modules/chai'))

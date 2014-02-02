@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: "/lib/",
+    baseUrl: "/static/lib/",
     paths: {
         jquery: 'jquery-2.0.3.min',
         data: '../js/data',
