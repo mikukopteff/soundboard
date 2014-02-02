@@ -65,12 +65,30 @@ a.buttontext:active {
 }
 
 .share {
-
+  z-index: 0;
   position: absolute;
   bottom: 0;
   right: 0;
   margin-right: 10px;
   margin-bottom: 10px;
+}
+
+.share-dialog {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index:999;
+  margin-right: 22%;
+  margin-bottom: 14px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 8%;
+  padding-right: 8%;
+  background:#fff; color:#333;
+}
+.share-item {
+  text-align: left;
+  display:block;
 }
 
 @media all and (max-width: 1150px) {
