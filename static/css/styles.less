@@ -74,17 +74,20 @@ a.buttontext:active {
 }
 
 .share-dialog {
+  display:none;
   position: absolute;
   bottom: 0;
   right: 0;
   z-index:999;
-  margin-right: 22%;
-  margin-bottom: 14px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 8%;
-  padding-right: 8%;
+  border: 1px solid grey;
+  margin-right: 65px;
+  margin-bottom: 37px;
+  padding: 2px 5px 2px 5px;
   background:#fff; color:#333;
+  p {
+    font-size: 10px;
+    font-family: 'The Girl Next Door', cursive;
+  }
 }
 .share-item {
   text-align: left;
@@ -99,6 +102,13 @@ a.buttontext:active {
     width: 40px;
     height: auto;
   }
+  .share-dialog {
+    margin-right: 50px;
+    margin-bottom: 34px;
+    p {
+      font-size: 10px;
+    }
+  }
 }
 @media all and (max-width: 900px) {
   a.buttontext {
@@ -107,6 +117,23 @@ a.buttontext:active {
   img.share {
     width: 30px;
     height: auto;
+  }
+  .share-dialog {
+    margin-right: 40px;
+    margin-bottom: 28px;
+    p {
+      font-size: 8px;
+    }
+  }
+}
+@media all and (max-width: 760px) {
+  .share-dialog {
+    input {
+      width: 95px;
+    }
+    p {
+      font-size: 6px;
+    }
   }
 }
 
