@@ -10,6 +10,14 @@ require.config({
 });
 
 require(['jquery', 'sharing', 'data', 'lodash', 'less'], function($, sharing, data, _) {
+    $('#login-button').click(function(e) {
+        e.preventDefault()
+        $.post("/login", $( "#login" ).serialize()).done(function(e) {
+            console.log(e)
+            console.log('login pressed')
+        });
+    })
+
     var board = {}
     var audio = document.createElement('audio');
     audio.setAttribute('preload', 'auto');

@@ -1,7 +1,12 @@
-@normal-font: normal 36px 'The Girl Next Door', cursive;
+@big-font: normal 36px 'The Girl Next Door', cursive;
+@normal-font-family: 'The Girl Next Door', cursive;
+@green: #58ebd3;
+@orange:  #ffa659;
+@red: #ff7a85;
+@blue: #5bb2fc;
 
 .heading {
-	font: @normal-font;
+	font: @big-font;
 	text-align: center;
 	.epic {
 		font-weight: bold;
@@ -18,19 +23,19 @@ h1:after {
 }
 
 .blue {
-	background-color: #5bb2fc;
+	background-color: @blue;
 }
 .green {
-	background-color: #58ebd3;
+	background-color: @green;
 }
 .orange {
-	background-color: #ffa659;
+	background-color: @orange;
 }
 .red {
-	background-color: #ff7a85;
+	background-color: @red;
 }
 a.buttontext {
-	font: @normal-font;
+	font: @big-font;
     text-decoration: none;
     white-space: nowrap;
     background-color: #FFF;
@@ -64,6 +69,39 @@ a.buttontext:active {
   min-height: 150px;
 }
 
+.board {
+  display: none;
+}
+
+#login-button {
+  background: @green;
+}
+
+
+.glowing-border:focus { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+#login {
+  margin: 0px auto;
+  padding-top: 60px;
+  text-align:center;
+  font-size: 28px;
+  font-family: @normal-font-family;
+  input {
+    border: 1px solid @blue;
+    width: 260px;
+    height: 40px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    color: black;
+    font-family: @normal-font-family;
+    font-size: 18px;
+  }
+}
+
 .share {
   z-index: 0;
   position: absolute;
@@ -86,7 +124,7 @@ a.buttontext:active {
   background:#fff; color:#333;
   p {
     font-size: 10px;
-    font-family: 'The Girl Next Door', cursive;
+    font-family: @normal-font-family;
   }
 }
 .share-item {
@@ -176,4 +214,5 @@ a.buttontext:active {
     50% { opacity: 0.3; }
     100% { opacity: 1.0; }
 }
+
 
