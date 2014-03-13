@@ -1,17 +1,12 @@
 var express = require('express')
 var _ = require('underscore')
 var cons = require('consolidate')
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy
 var app = express()
 
 app.configure(function() {
 	app.use(express.compress())
   	app.use(express.cookieParser())
   	app.use(express.bodyParser())
-  	app.use(passport.initialize())
-  	app.use(express.session({ secret: 'keyboard cat' }));
-  	app.use(passport.session())
   	app.use('/static', express.static(__dirname + '/static'))
 	/* Test deps, these should be refactored into a seperate node entrypoint */
 	app.use('/test', express.static(__dirname + '/test'))
