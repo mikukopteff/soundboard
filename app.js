@@ -23,6 +23,8 @@ app.set('views', __dirname + '/views')
 console.log('Server started')
 app.listen(process.env.PORT || 8000)
 
+var emails = new Array()
+
 function defaultRender(req, res) {
 	res.render('index', {title : 'The most Epic of Boards', 
 		url: req.protocol + "://" + req.get('host') + req.url,
@@ -31,11 +33,21 @@ function defaultRender(req, res) {
 
 app.get('/', defaultRender)
 
-app.get('/:board/:sound', defaultRender)
+app.get('/foo/:bar', function(req, res) {
+	res.send('foo');
+})
 
+app.get('/check/email/:email', function(req, res) {
+	if (_.contains(emails, req.params.email))
+		res.send('true')
+	else
+		res.send('false')
+})
 
 app.post('/login', function(req, res) {
 	console.log(req.body.email)
 	console.log(req.body.password)
 	res.send('No user with this email exists');
 })
+
+app.get('/:board/:sound', defaultRender)

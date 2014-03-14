@@ -14,7 +14,7 @@
   <meta name="description" content="Awesome soundboard">
   <meta name="author" content="Soundboard">
   <meta name="viewport" content="initial-scale=1">
-  <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door|Exo+2' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door|Exo+2|Gafata' rel='stylesheet' type='text/css'>
   <link rel="stylesheet/less" type="text/css" href="/static/css/styles.less" />
   <link rel="shortcut icon" href="/favicon.jpg" />
   <script type="text/javascript" data-main="/static/js/main" src="/static/lib/require.js"></script>
@@ -35,15 +35,16 @@
   <h1 class="heading">The most <em class="epic">Epic</em> of Boards</h1>
 
   <form id="login" action="/login" method="post">
-      <p> Login or Register:</p>
+      <p id="login-text">Please enter your email</p>
     <div>
-      <input type="text" name="email" placeholder="email"/>
+      <input id="login-email" type="text" name="email" placeholder="email"/>
     </div>
-    <div>
-        <input type="password" name="password" placeholder="password"/>
+    <div id="password">
+        <input id="login-pass" type="password" name="password" placeholder="password"/>
     </div>
+        <p id="pass-text" class="errors">Foo</p>
     <div>
-        <input id="login-button" type="submit" value="Log In"/>
+        <input id="login-button" type="submit" value="Log In or Register"/>
     </div>
   </form>
 

@@ -2,14 +2,18 @@ require.config({
     baseUrl: "/static/lib/",
     paths: {
         jquery: 'jquery-2.0.3.min',
+        lodash: 'lodash.min',
+        less: 'less-1.6.0.min',
         data: '../js/data',
         sharing: '../js/sharing',
-        lodash: 'lodash.min',
-        less: 'less-1.6.0.min'
+        login: '../js/login',
     }
 });
 
-require(['jquery', 'sharing', 'data', 'lodash', 'less'], function($, sharing, data, _) {
+require(['jquery', 'sharing', 'data', 'lodash', 'login', 'less'], function($, sharing, data, _, login) {
+    
+    login.validate()
+
     $('#login-button').click(function(e) {
         e.preventDefault()
         $.post("/login", $( "#login" ).serialize()).done(function(e) {
