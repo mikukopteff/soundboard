@@ -33,16 +33,14 @@ function defaultRender(req, res) {
 
 app.get('/', defaultRender)
 
-app.get('/foo/:bar', function(req, res) {
-	res.send('foo');
-})
-
 app.get('/check/email/:email', function(req, res) {
 	if (_.contains(emails, req.params.email))
 		res.send('true')
 	else
 		res.send('false')
 })
+
+app.get('/:board/:sound', defaultRender)
 
 app.post('/register', function(req, res) {
 	console.log(req.body.email)
@@ -54,5 +52,3 @@ app.post('/register', function(req, res) {
 app.post('/login', function(req, res) {
 	res.send('logged in')
 })
-
-app.get('/:board/:sound', defaultRender)
