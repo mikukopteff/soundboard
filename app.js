@@ -44,10 +44,11 @@ app.get('/check/email/:email', function(req, res) {
 		res.send('false')
 })
 
-app.post('/login', function(req, res) {
+app.post('/register', function(req, res) {
 	console.log(req.body.email)
 	console.log(req.body.password)
-	res.send('No user with this email exists');
+	emails.push(req.body.email)
+	res.send('registered');
 })
 
 app.get('/:board/:sound', defaultRender)

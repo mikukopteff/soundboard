@@ -16,9 +16,9 @@ require(['jquery', 'sharing', 'data', 'lodash', 'login', 'less'], function($, sh
 
     $('#login-button').click(function(e) {
         e.preventDefault()
-        $.post("/login", $( "#login" ).serialize()).done(function(e) {
+        $.post("/register", $( "#login" ).serialize()).done(function(e) {
             console.log(e)
-            console.log('login pressed')
+            console.log('Registered user')
         });
     })
 

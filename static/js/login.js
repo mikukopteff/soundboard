@@ -1,12 +1,12 @@
 define([], function() {
 
-	function checkEmail(inputEvent) {
+	function checkEmailExistance(inputEvent) {
 		var string = $(inputEvent.currentTarget).val()
 		console.log(string)
 		if (string.length == 0)
 			return
 		jQuery.ajax({
-        	url:    '/check/email/' + $(inputEvent.currentTarget).val(),
+        	url:    '/check/email/' + string,
         	success: function(result) {
 				console.log(result)
 				if(result != "true")
@@ -21,7 +21,7 @@ define([], function() {
 	function matchPasswords(inputEvent) {
 		var passTwo = $(inputEvent.currentTarget.children[0]).val()
 		if (passTwo == $('#login-pass').val()) {
-			$('#login-button').removeProp("disabled")
+			enableButton()
 			$('#pass-text').hide()
 		} else {
 			$('#pass-text').text('Passwords don\'t match').show()
@@ -32,10 +32,9 @@ define([], function() {
 		var pass = $(inputEvent.currentTarget).val()
 		console.log($(inputEvent.currentTarget).val().length)
 		if (pass.length < 8 ) {
-			if ($('#length-error').length == 0)
-				$('#pass-text').clone().attr('id', 'length-error').text('Password too short! 8 characters please!').insertAfter('#pass-text').show()
+			showErrorField('length-error', 'Password is too short, could you make it a bit longer?')
 		} else {
-			$('#length-error').remove()
+			deleteErrorField('length-error')
 		}
 	}
 
@@ -57,10 +56,42 @@ define([], function() {
 		$('#login-pass').keyup(checkPasswordLength)
 	}
 
+	function checkEmailValidity(inputEvent) {
+		if (!validateEmail($(inputEvent.currentTarget).val())) {
+			showErrorField('email-error', 'Not a valid email yet')
+		} else {
+			deleteErrorField('email-error')
+		}
+	}
+
+	function showErrorField(id, errorText) {
+		if ($('#' + id).length == 0)
+			$('#pass-text').clone().attr('id', id).text(errorText).insertAfter('#pass-text').show()
+	}
+
+	function deleteErrorField(id) {
+		$('#' + id).remove()
+	}
+
+	function validateEmail(email) { 
+    	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   		return re.test(email)
+	}
+
+	function disableButton() {
+		$('#login-button').prop("disabled", true)
+	}
+
+	function enableButton() {
+		$('#login-button').addClass('button-enabled')
+		$('#login-button').removeAttr("disabled")	
+	}
+
 	return {
 		validate: function() {
-			$('#login-button').prop("disabled", true)
-			$('#login-email').change(checkEmail)
+			disableButton()	
+			$('#login-email').keyup(checkEmailValidity)
+			$('#login-email').change(checkEmailExistance)
 		}
 	}
 })
