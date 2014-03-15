@@ -12,15 +12,7 @@ require.config({
 
 require(['jquery', 'sharing', 'data', 'lodash', 'login', 'less'], function($, sharing, data, _, login) {
     
-    login.validate()
-
-    $('#login-button').click(function(e) {
-        e.preventDefault()
-        $.post("/register", $( "#login" ).serialize()).done(function(e) {
-            console.log(e)
-            console.log('Registered user')
-        });
-    })
+    login.registerEventHandlers()
 
     var board = {}
     var audio = document.createElement('audio');

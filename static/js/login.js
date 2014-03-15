@@ -22,6 +22,7 @@ define([], function() {
 		var passTwo = $(inputEvent.currentTarget.children[0]).val()
 		if (passTwo == $('#login-pass').val()) {
 			enableButton()
+			registerButtonHandler('register')
 			$('#pass-text').hide()
 		} else {
 			$('#pass-text').text('Passwords don\'t match').show()
@@ -38,6 +39,14 @@ define([], function() {
 		}
 	}
 
+	function checkEmailValidity(inputEvent) {
+		if (!validateEmail($(inputEvent.currentTarget).val())) {
+			showErrorField('email-error', 'Not a valid email yet')
+		} else {
+			deleteErrorField('email-error')
+		}
+	}
+
 	function createSecondPasswordField() {
 		if ($('#confirmpass').length == 0) {
 			var secondPass = $('#password').clone()
@@ -49,19 +58,17 @@ define([], function() {
 	}
 
 	function register() {
-		$('#login-text').hide(500).text('Email not found, please register first!').show(500)
+		$('#login-text').hide().text('Email not found, please register first!').fadeIn(500)
 		createSecondPasswordField()
 		$('#login-button').attr('value', 'Register')
 		$('#confirmpass').keyup(matchPasswords)
 		$('#login-pass').keyup(checkPasswordLength)
 	}
 
-	function checkEmailValidity(inputEvent) {
-		if (!validateEmail($(inputEvent.currentTarget).val())) {
-			showErrorField('email-error', 'Not a valid email yet')
-		} else {
-			deleteErrorField('email-error')
-		}
+	function login() {
+		$('#login-button').attr('value', 'Login')
+		enableButton()
+		registerButtonHandler('login')
 	}
 
 	function showErrorField(id, errorText) {
@@ -84,14 +91,24 @@ define([], function() {
 
 	function enableButton() {
 		$('#login-button').addClass('button-enabled')
-		$('#login-button').removeAttr("disabled")	
+		$('#login-button').removeAttr("disabled")
 	}
 
 	return {
-		validate: function() {
+		registerEventHandlers: function() {
 			disableButton()	
 			$('#login-email').keyup(checkEmailValidity)
 			$('#login-email').change(checkEmailExistance)
 		}
+	}
+
+	function registerButtonHandler(type) {
+		$('#login-button').click(function(e) {
+        	e.preventDefault()
+        	$.post('/' + type, $('#login').serialize()).done(function(e) {
+           		console.log(e)
+           		console.log('Click type:' + type)
+        	});
+    	})
 	}
 })

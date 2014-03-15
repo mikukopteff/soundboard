@@ -48,7 +48,11 @@ app.post('/register', function(req, res) {
 	console.log(req.body.email)
 	console.log(req.body.password)
 	emails.push(req.body.email)
-	res.send('registered');
+	res.send('registered')
+})
+
+app.post('/login', function(req, res) {
+	res.send('logged in')
 })
 
 app.get('/:board/:sound', defaultRender)
