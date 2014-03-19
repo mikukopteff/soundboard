@@ -1,6 +1,7 @@
 var express = require('express')
 var _ = require('underscore')
 var cons = require('consolidate')
+var auth = require('./auth.js')
 var app = express()
 
 app.configure(function() {
@@ -43,12 +44,15 @@ app.get('/check/email/:email', function(req, res) {
 app.get('/:board/:sound', defaultRender)
 
 app.post('/register', function(req, res) {
+	//Validation!
 	console.log(req.body.email)
 	console.log(req.body.password)
 	emails.push(req.body.email)
+	auth.createToken(req.body.email)
 	res.send('registered')
 })
 
 app.post('/login', function(req, res) {
+	auth.createToken(req.body.email)
 	res.send('logged in')
 })
