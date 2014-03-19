@@ -7,7 +7,7 @@
     "express": "3.x",
     "consolidate": "*",
     "lodash": "*",
-    "bcrypt": "*",
+    "crypto": "*",
     "underscore": "*"
   },
   "devDependencies": {
