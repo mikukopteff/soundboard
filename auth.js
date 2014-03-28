@@ -14,7 +14,7 @@ var Sep = '|'
 
 function digest(string) {
 	var digester = crypto.createHmac('sha1', 's994Mf54PEgXwgx/2f+Kt5Nbkq6HhgQCYsNDhtvbfC8=')
-	return digester.update(string).digest(InputEncoding)	
+	return digester.update(string).digest('base64')	
 }
 
 function cipher(string) {
