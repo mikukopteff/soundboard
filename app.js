@@ -6,7 +6,7 @@ var app = express()
 
 app.configure(function() {
 	app.use(express.compress())
-  	app.use(express.cookieParser())
+  	app.use(express.cookieParser('fooobarzzzz'))
   	app.use(express.bodyParser())
   	app.use('/static', express.static(__dirname + '/static'))
 	/* Test deps, these should be refactored into a seperate node entrypoint */
@@ -48,11 +48,11 @@ app.post('/register', function(req, res) {
 	console.log(req.body.email)
 	console.log(req.body.password)
 	emails.push(req.body.email)
-	auth.createToken(req.body.email)
-	res.send('registered')
+	res.cookie('epic-auth', auth.createToken(req.body.email), {signed: true})
+	res.send('succesful')
 })
 
 app.post('/login', function(req, res) {
-	auth.createToken(req.body.email)
-	res.send('logged in')
+	res.cookie('epic-auth', auth.createToken(req.body.email), {signed: true})
+	res.send('successful')
 })
