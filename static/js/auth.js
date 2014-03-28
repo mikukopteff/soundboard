@@ -1,6 +1,6 @@
 define([], function() {
 
-	var loginDone = function(){console.log('initializing still')}
+	var authDone = function(){console.log('initializing still')}
 
 	function checkEmailExistance(inputEvent) {
 		var string = $(inputEvent.currentTarget).val()
@@ -22,7 +22,7 @@ define([], function() {
 
 	function matchPasswords(inputEvent) {
 		var passTwo = $(inputEvent.currentTarget.children[0]).val()
-		if (passTwo == $('#login-pass').val()) {
+		if (passTwo == $('#auth-pass').val()) {
 			enableButton()
 			registerButtonHandler('register')
 			$('#pass-text').hide()
@@ -54,21 +54,21 @@ define([], function() {
 			var secondPass = $('#password').clone()
 			secondPass.attr('id', 'confirmpass')
 			$(secondPass.children()[0]).attr('placeholder', 're-enter password')
-			$(secondPass.children()[0]).attr('id', 'login-pass-2')
+			$(secondPass.children()[0]).attr('id', 'auth-pass-2')
 			secondPass.insertAfter($('#password'))
 		}
 	}
 
 	function register() {
-		$('#login-text').hide().text('Email not found, please register first!').fadeIn(500)
+		$('#auth-text').hide().text('Email not found, please register first!').fadeIn(500)
 		createSecondPasswordField()
-		$('#login-button').attr('value', 'Register')
+		$('#auth-button').attr('value', 'Register')
 		$('#confirmpass').keyup(matchPasswords)
-		$('#login-pass').keyup(checkPasswordLength)
+		$('#auth-pass').keyup(checkPasswordLength)
 	}
 
 	function login() {
-		$('#login-button').attr('value', 'Login')
+		$('#auth-button').attr('value', 'Login')
 		enableButton()
 		registerButtonHandler('login')
 	}
@@ -88,30 +88,30 @@ define([], function() {
 	}
 
 	function disableButton() {
-		$('#login-button').prop("disabled", true)
+		$('#auth-button').prop("disabled", true)
 	}
 
 	function enableButton() {
-		$('#login-button').addClass('button-enabled')
-		$('#login-button').removeAttr("disabled")
+		$('#auth-button').addClass('button-enabled')
+		$('#auth-button').removeAttr("disabled")
 	}
 
 	return {
 		registerEventHandlers: function(done) {
-			loginDone = done
+			authDone = done
 			disableButton()	
-			$('#login-email').keyup(checkEmailValidity)
-			$('#login-email').change(checkEmailExistance)
+			$('#auth-email').keyup(checkEmailValidity)
+			$('#auth-email').change(checkEmailExistance)
 		}
 	}
 
 	function registerButtonHandler(type) {
-		$('#login-button').click(function(e) {
+		$('#auth-button').click(function(e) {
         	e.preventDefault()
-        	$.post('/' + type, $('#login').serialize()).done(function(data) {
+        	$.post('/' + type, $('#auth').serialize()).done(function(data) {
            		console.log(type + ' ' + data)
            		if (data == 'successful') {
-            		loginDone(data)
+            		authDone(data)
         		} else {
         			console.log(data)
         			showErrorField('Something went horribly wrong. Please refresh the page.')

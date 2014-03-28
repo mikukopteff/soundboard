@@ -6,13 +6,13 @@ require.config({
         less: 'less-1.6.0.min',
         data: '../js/data',
         sharing: '../js/sharing',
-        login: '../js/login',
+        auth: '../js/auth',
     }
 })
 
-require(['jquery', 'sharing', 'data', 'lodash', 'login', 'less'], function($, sharing, data, _, login) {
-    login.registerEventHandlers(function(authReply) {
-        $('#login').hide(500)
+require(['jquery', 'sharing', 'data', 'lodash', 'auth', 'less'], function($, sharing, data, _, auth) {
+    auth.registerEventHandlers(function(authReply) {
+        $('#auth').hide(500)
         createBoard()        
     })
 
@@ -20,7 +20,6 @@ require(['jquery', 'sharing', 'data', 'lodash', 'login', 'less'], function($, sh
         data.boardConstructor(playAudio, function(json) {
             _.each($('.cell .share'), function(element) { 
                 sharing.shareButton(element, json)
-                //createAudioElement(element) 
             })
             sharing.highlightSelected(_.last(window.location.pathname.split('/')))
         })
