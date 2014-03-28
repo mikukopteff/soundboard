@@ -8,42 +8,26 @@ require.config({
         sharing: '../js/sharing',
         login: '../js/login',
     }
-});
+})
 
 require(['jquery', 'sharing', 'data', 'lodash', 'login', 'less'], function($, sharing, data, _, login) {
-    
     login.registerEventHandlers(function(authReply) {
         $('#login').hide(500)
-        createBoard()
+        createBoard()        
     })
 
-    function createBoard() {
-        var board = {}
-        var audio = document.createElement('audio')
-        audio.setAttribute('preload', 'auto')
-        audio.autobuffer = true
-        document.body.appendChild(audio)
-        audio.load()
+    function createBoard() {       
         data.boardConstructor(playAudio, function(json) {
-            board = json
-            _.each($('.cell .share'), function(element) { sharing.shareButton(element, board) })
+            _.each($('.cell .share'), function(element) { 
+                sharing.shareButton(element, json)
+                //createAudioElement(element) 
+            })
             sharing.highlightSelected(_.last(window.location.pathname.split('/')))
-        });
+        })
    }
 
     function playAudio(event) {
-        event.preventDefault();
-        createSource(event.target.getAttribute('data-audio-url'));
-        audio.play();
+        event.preventDefault()
+        $(event.target).parent().children('audio')[0].play()
     }
-
-    function createSource(audioUrl) {
-        console.log(audio);
-        if (audio.childNodes.length > 0) audio.removeChild(audio.childNodes[0]);
-        var source = document.createElement('source');
-        source.type = 'audio/wav';
-        source.src = audioUrl;
-        audio.appendChild(source);
-    }
-
-});
+})

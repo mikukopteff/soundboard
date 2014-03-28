@@ -12,8 +12,8 @@ define([], function() {
 					var y = classOrder.length > i ? i : i - classOrder.length;
 					newCell.addClass(classOrder[y])
 					newCell.children('a.buttontext').text(json.boardCells[i].text)
-						.attr('href','#').attr('data-audio-url', json.boardCells[i].audioUrl)
-						.click(buttonClicked);
+						.attr('href','#').click(buttonClicked);
+					newCell.children('audio').children('source').attr('src', json.boardCells[i].audioUrl)
 					newCell.appendTo(".board").show();
 				}
 				boardCreated(json);
