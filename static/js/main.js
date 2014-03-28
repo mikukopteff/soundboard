@@ -12,19 +12,24 @@ require.config({
 
 require(['jquery', 'sharing', 'data', 'lodash', 'login', 'less'], function($, sharing, data, _, login) {
     
-    login.registerEventHandlers()
+    login.registerEventHandlers(function(authReply) {
+        $('#login').hide(500)
+        createBoard()
+    })
 
-    var board = {}
-    var audio = document.createElement('audio');
-    audio.setAttribute('preload', 'auto');
-    audio.autobuffer = true;
-    document.body.appendChild(audio);
-    audio.load();
-    data.boardConstructor(playAudio, function(json) {
-        board = json
-        _.each($('.cell .share'), function(element) { sharing.shareButton(element, board) });
-        sharing.highlightSelected(_.last(window.location.pathname.split('/')))
-    });
+    function createBoard() {
+        var board = {}
+        var audio = document.createElement('audio')
+        audio.setAttribute('preload', 'auto')
+        audio.autobuffer = true
+        document.body.appendChild(audio)
+        audio.load()
+        data.boardConstructor(playAudio, function(json) {
+            board = json
+            _.each($('.cell .share'), function(element) { sharing.shareButton(element, board) })
+            sharing.highlightSelected(_.last(window.location.pathname.split('/')))
+        });
+   }
 
     function playAudio(event) {
         event.preventDefault();

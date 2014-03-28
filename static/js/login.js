@@ -1,5 +1,7 @@
 define([], function() {
 
+	var loginDone = function(){console.log('initializing still')}
+
 	function checkEmailExistance(inputEvent) {
 		var string = $(inputEvent.currentTarget).val()
 		console.log(string)
@@ -95,7 +97,8 @@ define([], function() {
 	}
 
 	return {
-		registerEventHandlers: function() {
+		registerEventHandlers: function(done) {
+			loginDone = done
 			disableButton()	
 			$('#login-email').keyup(checkEmailValidity)
 			$('#login-email').change(checkEmailExistance)
@@ -105,9 +108,15 @@ define([], function() {
 	function registerButtonHandler(type) {
 		$('#login-button').click(function(e) {
         	e.preventDefault()
-        	$.post('/' + type, $('#login').serialize()).done(function(e) {
-           		console.log(e)
-           		console.log('Click type:' + type)
+        	$.post('/' + type, $('#login').serialize()).done(function(data) {
+           		console.log(type + ' ' + data)
+           		if (data == 'successful') {
+            		loginDone(data)
+        		} else {
+        			console.log(data)
+        			showErrorField('Something went horribly wrong. Please refresh the page.')
+        		}
+           		
         	});
     	})
 	}

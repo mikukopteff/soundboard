@@ -49,7 +49,7 @@ app.post('/register', function(req, res) {
 	console.log(req.body.password)
 	emails.push(req.body.email)
 	res.cookie('epic-auth', auth.createToken(req.body.email), {signed: true})
-	res.send('succesful')
+	res.send('successful')
 })
 
 app.post('/login', function(req, res) {
