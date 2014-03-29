@@ -1,17 +1,15 @@
-define([], function() {
+define(['../js/validate'], function(validate) {
 
 	var authDone = function(){console.log('initializing still')}
 
 	function checkEmailExistance(inputEvent) {
 		var string = $(inputEvent.currentTarget).val()
-		console.log(string)
 		if (string.length == 0)
 			return
 		jQuery.ajax({
         	url:    '/check/email/' + string,
         	success: function(result) {
-				console.log(result)
-				if(result != "true")
+				if(result != 'true')
 					register()
 				else
 					login()
@@ -23,8 +21,10 @@ define([], function() {
 	function matchPasswords(inputEvent) {
 		var passTwo = $(inputEvent.currentTarget.children[0]).val()
 		if (passTwo == $('#auth-pass').val()) {
-			enableButton()
-			registerButtonHandler('register')
+			if ($('#auth-button').prop('disabled')) {
+				enableButton()
+				registerButtonHandler('register')
+			}
 			$('#pass-text').hide()
 		} else {
 			$('#pass-text').text('Passwords don\'t match').show()
@@ -32,21 +32,16 @@ define([], function() {
 	}
 
 	function checkPasswordLength(inputEvent) {
-		var pass = $(inputEvent.currentTarget).val()
-		console.log($(inputEvent.currentTarget).val().length)
-		if (pass.length < 8 ) {
-			showErrorField('length-error', 'Password is too short, could you make it a bit longer?')
-		} else {
-			deleteErrorField('length-error')
-		}
+		var password = $(inputEvent.currentTarget).val()
+		var errorFunc = partial(showErrorField, 'length-error', 'Password is too short, could you make it a bit longer?')
+		var successFunc = partial(deleteErrorField, 'length-error')
+		validate.password(password, errorFunc, successFunc)
 	}
 
 	function checkEmailValidity(inputEvent) {
-		if (!validateEmail($(inputEvent.currentTarget).val())) {
-			showErrorField('email-error', 'Not a valid email yet')
-		} else {
-			deleteErrorField('email-error')
-		}
+		validate.email($(inputEvent.currentTarget).val(),
+			partial(showErrorField, 'email-error', 'Not a valid email yet'),
+			partial(deleteErrorField, 'email-error'))
 	}
 
 	function createSecondPasswordField() {
@@ -82,11 +77,6 @@ define([], function() {
 		$('#' + id).remove()
 	}
 
-	function validateEmail(email) { 
-    	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-   		return re.test(email)
-	}
-
 	function disableButton() {
 		$('#auth-button').prop("disabled", true)
 	}
@@ -120,4 +110,13 @@ define([], function() {
         	});
     	})
 	}
+
+	function partial(func) {
+ 		var args = Array.prototype.slice.call(arguments, 1)
+  		return function() {
+    		var allArguments = args.concat(Array.prototype.slice.call(arguments))
+    		return func.apply(this, allArguments)
+  	}
+}
+
 })
