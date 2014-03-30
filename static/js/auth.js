@@ -50,6 +50,7 @@ define(['../js/helpers/validate', '../js/helpers/util'], function(validate, util
 			secondPass.attr('id', 'confirmpass')
 			$(secondPass.children()[0]).attr('placeholder', 're-enter password')
 			$(secondPass.children()[0]).attr('id', 'auth-pass-2')
+			$(secondPass.children()[0]).attr('name', 'confirmpass')
 			secondPass.insertAfter($('#password'))
 		}
 	}
@@ -98,7 +99,6 @@ define(['../js/helpers/validate', '../js/helpers/util'], function(validate, util
 	function registerButtonHandler(type) {
 		$('#auth-button').click(function(e) {
         	e.preventDefault()
-        	console.log($('#auth').serialize())
         	$.post('/' + type, $('#auth').serialize()).done(function(data) {
            		if (data == 'successful') {
             		authDone(data)
