@@ -3,6 +3,8 @@ var _ = require('underscore')
 var cons = require('consolidate')
 var auth = require('./auth.js')
 var app = express()
+var amd = require("amd-loader")
+var validate = require('./static/js/helpers/validate.js')
 
 app.configure(function() {
 	app.use(express.compress())
@@ -44,12 +46,21 @@ app.get('/check/email/:email', function(req, res) {
 app.get('/:board/:sound', defaultRender)
 
 app.post('/register', function(req, res) {
-	//Validation!
 	console.log(req.body.email)
 	console.log(req.body.password)
-	emails.push(req.body.email)
-	res.cookie('epic-auth', auth.createToken(req.body.email), {signed: true})
-	res.send('successful')
+	validate.email(req.body.email, function() {
+		res.status(400).send('Email not valid')
+	}, function() {
+		console.log('Email is valid')
+	})
+	validate.password(req.body.password, function() {
+		res.status(400).send('Password too short')
+	}, function() {
+		console.log('All validated, registering user')
+		emails.push(req.body.email)
+		res.cookie('epic-auth', auth.createToken(req.body.email), {signed: true})
+		res.send('successful')
+	})
 })
 
 app.post('/login', function(req, res) {

@@ -1,4 +1,4 @@
-define(['../js/validate'], function(validate) {
+define(['../js/helpers/validate', '../js/helpers/util'], function(validate, util) {
 
 	var authDone = function(){console.log('initializing still')}
 
@@ -33,15 +33,15 @@ define(['../js/validate'], function(validate) {
 
 	function checkPasswordLength(inputEvent) {
 		var password = $(inputEvent.currentTarget).val()
-		var errorFunc = partial(showErrorField, 'length-error', 'Password is too short, could you make it a bit longer?')
-		var successFunc = partial(deleteErrorField, 'length-error')
+		var errorFunc = util.partial(showErrorField, 'length-error', 'Password is too short, could you make it a bit longer?')
+		var successFunc = util.partial(deleteErrorField, 'length-error')
 		validate.password(password, errorFunc, successFunc)
 	}
 
 	function checkEmailValidity(inputEvent) {
 		validate.email($(inputEvent.currentTarget).val(),
-			partial(showErrorField, 'email-error', 'Not a valid email yet'),
-			partial(deleteErrorField, 'email-error'))
+			util.partial(showErrorField, 'email-error', 'Not a valid email yet'),
+			util.partial(deleteErrorField, 'email-error'))
 	}
 
 	function createSecondPasswordField() {
@@ -98,8 +98,8 @@ define(['../js/validate'], function(validate) {
 	function registerButtonHandler(type) {
 		$('#auth-button').click(function(e) {
         	e.preventDefault()
+        	console.log($('#auth').serialize())
         	$.post('/' + type, $('#auth').serialize()).done(function(data) {
-           		console.log(type + ' ' + data)
            		if (data == 'successful') {
             		authDone(data)
         		} else {
@@ -110,13 +110,4 @@ define(['../js/validate'], function(validate) {
         	});
     	})
 	}
-
-	function partial(func) {
- 		var args = Array.prototype.slice.call(arguments, 1)
-  		return function() {
-    		var allArguments = args.concat(Array.prototype.slice.call(arguments))
-    		return func.apply(this, allArguments)
-  	}
-}
-
 })
