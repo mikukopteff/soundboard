@@ -11,10 +11,20 @@ require.config({
 })
 
 require(['jquery', 'sharing', 'data', 'lodash', 'auth', 'less'], function($, sharing, data, _, auth) {
-    auth.registerEventHandlers(function(authReply) {
-        $('#auth').hide(500)
+    
+    if (document.cookie.indexOf('epic-auth') < 0) {
+        auth.registerEventHandlers(function(json) {
+            authDone(true)
+        })
+    } else {
+        authDone(false)
+    }
+
+    function authDone(animate) {
+        var timeout = animate ? 500 : 0
+        $('#auth').hide(timeout)
         createBoard()        
-    })
+    }
 
     function createBoard() {       
         data.boardConstructor(playAudio, function(json) {
