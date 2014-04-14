@@ -5,6 +5,7 @@ var auth = require('./auth.js')
 var app = express()
 var amd = require("amd-loader")
 var validate = require('./static/js/helpers/validate.js')
+var AuthCookie = 'epicboardauth'
 
 app.configure(function() {
 	app.use(express.compress())
@@ -43,13 +44,19 @@ app.get('/check/email/:email', function(req, res) {
 		res.send('false')
 })
 
-app.get('/:board/:sound', defaultRender)
+app.all('/auth/*', function(req, res, next) {
+	console.log('Authenticating user')
+	if (!auth.validateToken(req.signedCookies.epicboardauth))
+		res.status(400).send('Not authenticated. Wooops!')
+	else
+		next()
+})
 
-app.get('/myboard', function(req, res) {
+app.get('/auth/myboard', function(req, res) {
 	res.send({
 		boardId: "1",
 		author: "miku",
-		boardCells: [{text: "Varmaa!", audioUrl: "https://s3-eu-west-1.amazonaws.com/epic-board/varmaa3.wav"}
+		boardCells: [{text: "Sound!", audioUrl: "https://s3-eu-west-1.amazonaws.com/epic-board/varmaa3.wav"}
 		]
 	})	
 })
@@ -67,12 +74,12 @@ app.post('/register', function(req, res) {
 	}, function() {
 		console.log('All validated, registering user')
 		emails.push(req.body.email)
-		res.cookie('epic-auth', auth.createToken(req.body.email), {signed: true})
+		res.cookie(AuthCookie, auth.createToken(req.body.email), {signed: true})
 		res.send('successful')
 	})
 })
 
 app.post('/login', function(req, res) {
-	res.cookie('epic-auth', auth.createToken(req.body.email), {signed: true})
+	res.cookie(AuthCookie, auth.createToken(req.body.email), {signed: true})
 	res.send('successful')
 })

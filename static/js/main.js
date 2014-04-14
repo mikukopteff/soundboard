@@ -12,7 +12,7 @@ require.config({
 
 require(['jquery', 'sharing', 'data', 'lodash', 'auth', 'less'], function($, sharing, data, _, auth) {
     
-    if (document.cookie.indexOf('epic-auth') < 0) {
+    if (document.cookie.indexOf('epicboardauth') < 0) {
         auth.registerEventHandlers(function(json) {
             authDone(true)
         })
