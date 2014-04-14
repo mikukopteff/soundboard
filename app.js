@@ -45,6 +45,15 @@ app.get('/check/email/:email', function(req, res) {
 
 app.get('/:board/:sound', defaultRender)
 
+app.get('/myboard', function(req, res) {
+	res.send({
+		boardId: "1",
+		author: "miku",
+		boardCells: [{text: "Varmaa!", audioUrl: "https://s3-eu-west-1.amazonaws.com/epic-board/varmaa3.wav"}
+		]
+	})	
+})
+
 app.post('/register', function(req, res) {
 	console.log(req.body.email)
 	console.log(req.body.password)
