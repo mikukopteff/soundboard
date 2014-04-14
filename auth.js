@@ -36,13 +36,13 @@ exports.createToken = function(userId) {
 }
 
 exports.validateToken = function(token) {
-	var decryptedToken = decipher(token)
-	var tokens =  decryptedToken.split(Sep)
-	var originalHmac  = decryptedToken.substring(decryptedToken.split(Sep, 2).join(Sep).length + 1)
-	var newHmac = digest((tokens[0] + Sep + tokens[1] + Key))
-	if (newHmac == originalHmac && tokens[1] > new Date().getTime()) {
-		return tokens[0]
-	} else {
-		return false
+	if (typeof token != 'undefined') {
+		var decryptedToken = decipher(token)
+		var tokens =  decryptedToken.split(Sep)
+		var originalHmac  = decryptedToken.substring(decryptedToken.split(Sep, 2).join(Sep).length + 1)
+		var newHmac = digest((tokens[0] + Sep + tokens[1] + Key))
+		if (newHmac == originalHmac && tokens[1] > new Date().getTime())
+			return tokens[0]
 	}
+	return false
 }
