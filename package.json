@@ -9,6 +9,7 @@
     "lodash": "*",
     "crypto": "*",
     "underscore": "*",
+    "mongoose": "*",
     "amd-loader": "*"
   },
   "devDependencies": {
