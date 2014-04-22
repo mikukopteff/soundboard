@@ -1,23 +1,24 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
 
-var connection = function(fun) {
-	var mongoose = mongoose.connect('mongodb://localhost/my_database')
-	fun(mongoose)
-	mongoose.disconnect()
-}
+var boardSchema = mongoose.Schema({
+	boardId: Number,
+	author: String,
+	boardCells: [Schema.Types.Mixed]
+})
 
+var Boards = mongoose.model('Boards', boardSchema)
 
-var doQuery = function(query) {
-	connection(function(mongoose) {
-		query(mongoose)
-		mongoose.close()
-	})
+var inConnection = function(fun) {
+	mongoose.connect('mongodb://localhost/epic')
+	fun(mongoose.connection)
 }
 
 exports.getMyData = function(email) {
-	doQuery(function(mongoose) {
-		mongoose.findOne({'*'}, function(data) {
-			mongoose.close()
+	inConnection(function(connection) {
+		Boards.findOne('' , function(err, data) {
+			console.log(data)
+			connection.close()
 		})
 	})
 }

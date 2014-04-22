@@ -2,6 +2,7 @@ var express = require('express')
 var _ = require('underscore')
 var cons = require('consolidate')
 var auth = require('./auth.js')
+var persistance = require('./persistance.js')
 var app = express()
 var amd = require("amd-loader")
 var validate = require('./static/js/helpers/validate.js')
@@ -46,13 +47,17 @@ app.get('/check/email/:email', function(req, res) {
 
 app.all('/auth/*', function(req, res, next) {
 	console.log('Authenticating user')
-	if (!auth.validateToken(req.signedCookies.epicboardauth))
+	var reply = auth.validateToken(req.signedCookies.epicboardauth)
+	if (!reply) {
 		res.status(400).send('Not authenticated. Wooops!')
-	else
+	} else {
+		req.email = reply
 		next()
+	}
 })
 
 app.get('/auth/myboard', function(req, res) {
+	persistance.getMyData(req.email)
 	res.send({
 		boardId: "1",
 		author: "miku",
