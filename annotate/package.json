@@ -1,0 +1,22 @@
+{
+  "name": "annotate",
+  "version": "0.1.0",
+  "description": "Annotate text",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikukopteff/annotate"
+  },
+  "author": "Miku Kopteff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikukopteff/annotate/issues"
+  },
+  "homepage": "https://github.com/mikukopteff/annotate",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
+}
